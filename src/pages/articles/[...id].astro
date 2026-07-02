@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { topicName } from '../../site';
+import { site, topicName } from '../../site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -22,7 +22,7 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month:
       <p class="article-deck">{description}</p>
       <div class="article-byline">
         <span class="byline-mark">牛</span>
-        <span>百万头牛</span>
+        <span>{site.name}</span>
         <span>{formattedDate}</span>
         <span>预计阅读 {readTime} 分钟</span>
       </div>

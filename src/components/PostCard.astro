@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { topicName } from '../site';
+import { site, topicName } from '../site';
 
 interface Props {
   post: CollectionEntry<'posts'>;
@@ -21,7 +21,7 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month:
         <div class="generated-cover">
           <span>{topicName(topic)}</span>
           <strong>{title}</strong>
-          <i>百万头牛 · 投资研究</i>
+          <i>{site.name} · 投资研究</i>
         </div>
       )}
       {pinned && <span class="pin-badge">置顶</span>}

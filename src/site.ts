@@ -1,8 +1,6 @@
-export const site = {
-  name: '百万头牛',
-  tagline: '做有深度的投资分析，记录真实的投资过程',
-  description: '一个关于长期主义、公司研究与真实投资实践的独立内容网站。',
-};
+import siteSettings from './settings/site.json';
+
+export const site = siteSettings;
 
 export const topics = [
   { slug: 'portfolio', name: '投资实盘' },

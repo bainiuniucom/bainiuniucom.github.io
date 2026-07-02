@@ -3,6 +3,15 @@ media:
   output: /images
 
 content:
+  - name: site
+    label: 网站设置
+    type: file
+    path: src/settings/site.json
+    format: json
+    fields:
+      - { name: name, label: 网站名称, type: string, required: true }
+      - { name: tagline, label: 网站定位, type: string, required: true }
+      - { name: description, label: 网站简介（用于搜索引擎）, type: text, required: true }
   - name: posts
     label: 文章
     type: collection
