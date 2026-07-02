@@ -1,0 +1,15 @@
+---
+import { topics } from '../site';
+
+interface Props { active?: string }
+const { active = 'all' } = Astro.props;
+---
+
+<nav class="topic-nav" aria-label="文章专题">
+  <a class:list={['topic-pill', { active: active === 'all' }]} href="/">全部</a>
+  {topics.map((topic) => (
+    <a class:list={['topic-pill', { active: active === topic.slug }]} href={`/topic/${topic.slug}/`}>
+      {topic.name}
+    </a>
+  ))}
+</nav>

@@ -1,0 +1,83 @@
+---
+import { site } from '../site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = site.name,
+  description = site.description,
+  image = '/images/investing-desk.png',
+} = Astro.props;
+const pageTitle = title === site.name ? title : `${title}｜${site.name}`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="mini-brand" href="/" aria-label="返回首页">
+        <span class="mini-mark">牛</span>
+        <span>{site.name}</span>
+      </a>
+      <nav class="top-actions" aria-label="辅助导航">
+        <a href="/about/">关于</a>
+        <button class="search-trigger" type="button" aria-label="搜索文章" data-search-open>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>{site.name}</strong>
+        <p>{site.tagline}</p>
+      </div>
+      <p>本站内容仅为个人研究记录，不构成任何投资建议。</p>
+      <p>© {new Date().getFullYear()} bainiuniu.com</p>
+    </footer>
+    <dialog class="search-dialog" data-search-dialog>
+      <form method="dialog" class="search-head">
+        <label for="site-search">搜索文章</label>
+        <button aria-label="关闭搜索">关闭</button>
+      </form>
+      <input id="site-search" type="search" placeholder="输入公司、行业或文章标题…" autocomplete="off" data-search-input />
+      <p class="search-hint">输入关键词后，将在当前文章列表中筛选。</p>
+    </dialog>
+    <script>
+      const dialog = document.querySelector('[data-search-dialog]');
+      const input = document.querySelector('[data-search-input]');
+      document.querySelector('[data-search-open]')?.addEventListener('click', () => {
+        if (dialog instanceof HTMLDialogElement) dialog.showModal();
+        if (input instanceof HTMLInputElement) setTimeout(() => input.focus(), 50);
+      });
+      input?.addEventListener('input', (event) => {
+        const query = event.target instanceof HTMLInputElement ? event.target.value.trim().toLowerCase() : '';
+        const cards = [...document.querySelectorAll('[data-search-text]')];
+        cards.forEach((card) => {
+          const text = card.getAttribute('data-search-text')?.toLowerCase() ?? '';
+          card.toggleAttribute('hidden', query.length > 0 && !text.includes(query));
+        });
+        if (query && dialog instanceof HTMLDialogElement) dialog.close();
+      });
+    </script>
+  </body>
+</html>

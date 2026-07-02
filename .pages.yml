@@ -1,0 +1,41 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: posts
+    label: 文章
+    type: collection
+    path: src/content/posts
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, topic, pinned]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: 标题, type: string, required: true }
+      - { name: description, label: 摘要, type: text, required: true }
+      - { name: date, label: 发布日期, type: date, required: true }
+      - name: topic
+        label: 专题
+        type: select
+        required: true
+        options:
+          values:
+            - { value: portfolio, label: 投资实盘 }
+            - { value: company, label: 公司研究 }
+            - { value: industry, label: 行业观察 }
+            - { value: method, label: 投资方法 }
+            - { value: reading, label: 读书笔记 }
+      - { name: pinned, label: 首页置顶, type: boolean, default: false }
+      - { name: cover, label: 封面图片, type: image }
+      - { name: readTime, label: 预计阅读分钟, type: number, default: 6 }
+      - { name: body, label: 正文, type: rich-text, required: true }
+
+settings:
+  content:
+    merge: true

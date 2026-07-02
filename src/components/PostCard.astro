@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { topicName } from '../site';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  featured?: boolean;
+}
+const { post, featured = false } = Astro.props;
+const { title, description, date, topic, pinned, cover, readTime } = post.data;
+const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+---
+
+<article
+  class:list={['post-card', { featured, 'text-cover': !cover }]}
+  data-search-text={`${title} ${description} ${topicName(topic)}`}
+>
+  <a class="card-link" href={`/articles/${post.id}/`} aria-label={`阅读：${title}`}>
+    <div class="card-media">
+      {cover ? <img src={cover} alt="" loading="lazy" /> : (
+        <div class="generated-cover">
+          <span>{topicName(topic)}</span>
+          <strong>{title}</strong>
+          <i>百万头牛 · 投资研究</i>
+        </div>
+      )}
+      {pinned && <span class="pin-badge">置顶</span>}
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span>{topicName(topic)}</span>
+        <span>{formattedDate}</span>
+        <span>{readTime} 分钟</span>
+      </div>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <span class="read-more">阅读全文 <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>
