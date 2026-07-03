@@ -4,9 +4,9 @@
   --paper: #fff9f7;
   --surface: #ffffff;
   --line: #eadfdf;
-  --rose: #ee4b64;
-  --rose-soft: #fff0ee;
-  --gold: #ee4b64;
+  --rose: #d95750;
+  --rose-soft: #fff2ef;
+  --gold: #d95750;
   --serif: "Noto Serif SC", "Songti SC", STSong, Georgia, serif;
   --sans: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
@@ -21,8 +21,7 @@ button, input { font: inherit; }
 
 .site-header { height: 76px; max-width: 1240px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; }
 .mini-brand { display: inline-flex; align-items: center; }
-.mini-brand img { width: 46px; height: 46px; object-fit: cover; border-radius: 50%; }
-.byline-mark { display: inline-grid; place-items: center; width: 32px; height: 32px; color: #fff; background: var(--rose); border-radius: 50%; font-family: var(--serif); font-weight: 800; }
+.mini-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 50%; }
 .top-actions { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 14px; }
 .top-actions a:hover { color: var(--ink); }
 .search-trigger { width: 44px; height: 44px; padding: 9px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 999px; cursor: pointer; }
@@ -55,7 +54,7 @@ button, input { font: inherit; }
 .card-media { aspect-ratio: 16 / 10; overflow: hidden; position: relative; background: #e8e6dd; }
 .card-media img { height: 100%; object-fit: cover; transition: transform .45s ease; }
 .post-card:hover .card-media img { transform: scale(1.025); }
-.pin-badge { position: absolute; top: 14px; left: 14px; padding: 6px 10px; color: #fff; background: rgba(238,75,100,.92); backdrop-filter: blur(8px); border-radius: 999px; font-size: 11px; }
+.pin-badge { position: absolute; top: 14px; left: 14px; padding: 6px 10px; color: #fff; background: rgba(217,87,80,.94); backdrop-filter: blur(8px); border-radius: 999px; font-size: 11px; }
 .generated-cover { height: 100%; padding: 28px; display: flex; flex-direction: column; background: #fff0ea; }
 .generated-cover span { color: var(--rose); font-size: 12px; letter-spacing: .12em; }
 .generated-cover strong { max-width: 90%; margin: auto 0; font-family: var(--serif); font-size: clamp(25px, 3vw, 42px); line-height: 1.25; }
@@ -74,7 +73,7 @@ button, input { font: inherit; }
 .article-header h1 { margin: 0; font-family: var(--serif); font-size: clamp(36px, 6vw, 62px); line-height: 1.23; letter-spacing: -.02em; }
 .article-deck { max-width: 680px; margin: 24px auto; color: var(--muted); font-family: var(--serif); font-size: 18px; line-height: 1.8; }
 .article-byline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 16px; color: var(--muted); font-size: 12px; }
-.byline-mark { width: 28px; height: 28px; border-radius: 50%; font-size: 13px; }
+.byline-logo { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
 .article-cover { margin: 0 0 64px; overflow: hidden; border-radius: 28px; }
 .article-cover img { max-height: 610px; object-fit: cover; }
 .article-layout { display: grid; grid-template-columns: 180px minmax(0, 680px); justify-content: center; gap: 52px; align-items: start; }
@@ -102,6 +101,7 @@ button, input { font: inherit; }
 .share-button { width: 100%; height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 999px; cursor: pointer; }
 .share-button:hover { color: var(--rose); border-color: #efc5cb; }
 .share-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.share-tip { margin: 12px 0 0 !important; color: var(--rose) !important; text-align: center; }
 .back-link { color: var(--rose); font-size: 13px; font-weight: 650; }
 
 .simple-page { max-width: 720px; min-height: 70vh; margin: 70px auto 100px; padding: 0 28px; font-family: var(--serif); font-size: 18px; line-height: 2; }
@@ -141,8 +141,9 @@ button, input { font: inherit; }
   .site-header { height: 60px; padding: 0 18px; }
   .top-actions { gap: 14px; }
   .page-shell { padding: 0 14px 60px; }
+  .mini-brand img { width: 39px; height: 39px; }
   .profile-hero { aspect-ratio: 2.25 / 1; border-radius: 22px; }
-  .profile-hero img { object-fit: contain; background: #f77b76; }
+  .profile-hero img { object-fit: cover; }
   .profile-copy { left: 6%; width: 48%; }
   .profile-copy p { margin-bottom: 8px; font-size: 7px; }
   .profile-copy h1 { margin-bottom: 10px; font-size: clamp(22px, 8vw, 32px); }

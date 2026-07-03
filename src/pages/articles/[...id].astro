@@ -26,10 +26,10 @@ const hasToc = tocHeadings.length > 1;
       <h1>{title}</h1>
       <p class="article-deck">{description}</p>
       <div class="article-byline">
-        <span class="byline-mark">牛</span>
+        <img class="byline-logo" src="/images/logo-bainiuniu.webp" alt="" />
         <span>{site.name}</span>
         <span>{formattedDate}</span>
-        <span>预计阅读 {readTime} 分钟</span>
+        <span>阅读时间 {readTime} 分钟</span>
       </div>
     </header>
     {cover && <figure class="article-cover"><img src={cover} alt="" /></figure>}
@@ -45,19 +45,29 @@ const hasToc = tocHeadings.length > 1;
       <div class="article-content"><Content /></div>
     </div>
     <footer class="article-end">
-      <h2>文章结尾</h2>
+      <h2>本文仅为个人研究记录</h2>
       <span class="article-end-accent" aria-hidden="true"></span>
-      <p>本文仅为个人研究记录，不构成任何投资建议。投资有风险，决策需独立。</p>
+      <p>不构成任何投资建议。投资有风险，决策需独立。</p>
       <button class="share-button" type="button" data-share-button>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"></path></svg>
         <span data-share-label>分享文章</span>
       </button>
+      <p class="share-tip" data-share-tip hidden></p>
     </footer>
   </article>
   <script>
     const button = document.querySelector('[data-share-button]');
     const label = document.querySelector('[data-share-label]');
+    const tip = document.querySelector('[data-share-tip]');
     button?.addEventListener('click', async () => {
+      const inWechat = /MicroMessenger/i.test(navigator.userAgent);
+      if (inWechat) {
+        if (tip) {
+          tip.textContent = '请点击右上角“…”选择发送给朋友或分享到朋友圈';
+          tip.removeAttribute('hidden');
+        }
+        return;
+      }
       try {
         if (navigator.share) {
           await navigator.share({ title: document.title, url: window.location.href });
