@@ -9,6 +9,9 @@ const posts = (await getCollection('posts')).sort((a, b) => {
   if (a.data.pinned !== b.data.pinned) return a.data.pinned ? -1 : 1;
   return b.data.date.valueOf() - a.data.date.valueOf();
 });
+const topics = (await getCollection('topics'))
+  .map((topic) => ({ slug: topic.id, ...topic.data }))
+  .sort((a, b) => a.order - b.order);
 ---
 
 <BaseLayout>
@@ -23,7 +26,7 @@ const posts = (await getCollection('posts')).sort((a, b) => {
       <p>共 {posts.length} 篇研究与记录</p>
     </section>
     <section class="post-grid" aria-label="全部文章">
-      {posts.map((post, index) => <PostCard post={post} featured={index === 0} />)}
+      {posts.map((post) => <PostCard post={post} topics={topics} />)}
     </section>
   </div>
 </BaseLayout>

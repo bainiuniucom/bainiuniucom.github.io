@@ -8,11 +8,19 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    topic: z.enum(['portfolio', 'company', 'industry', 'method', 'reading']),
+    topic: z.string(),
     pinned: z.boolean().default(false),
     cover: z.string().optional(),
     readTime: z.number().default(6),
   }),
 });
 
-export const collections = { posts };
+const topics = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/topics' }),
+  schema: z.object({
+    name: z.string(),
+    order: z.number().default(100),
+  }),
+});
+
+export const collections = { posts, topics };

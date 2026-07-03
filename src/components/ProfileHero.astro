@@ -3,18 +3,13 @@ import { site } from '../site';
 ---
 
 <section class="profile-hero">
-  <div class="avatar" aria-hidden="true">
-    <span class="avatar-horns">⌁</span>
-    <span>牛</span>
-  </div>
+  <picture>
+    <source media="(max-width: 620px)" srcset="/images/hero-bainiuniu-background-mobile.webp" />
+    <img src="/images/hero-bainiuniu-background.webp" alt="" />
+  </picture>
   <div class="profile-copy">
-    <p class="profile-kicker">BAINIUNIU.COM</p>
+    <p>BAINIUNIU.COM</p>
     <h1>{site.name}</h1>
-    <p class="profile-tagline">{site.tagline}</p>
-    <p class="profile-note">慢一点看，深一点想，诚实地记录每一次判断。</p>
-  </div>
-  <div class="profile-seal" aria-label="长期主义">
-    <span>长期</span>
-    <span>主义</span>
+    <div>{site.tagline}</div>
   </div>
 </section>

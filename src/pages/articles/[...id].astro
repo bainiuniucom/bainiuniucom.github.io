@@ -10,14 +10,19 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const topics = (await getCollection('topics'))
+  .map((topic) => ({ slug: topic.id, ...topic.data }))
+  .sort((a, b) => a.order - b.order);
 const { title, description, date, topic, cover, readTime } = post.data;
 const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+const tocHeadings = headings.filter((heading) => heading.depth <= 3);
+const hasToc = tocHeadings.length > 1;
 ---
 
 <BaseLayout title={title} description={description} image={cover}>
   <article class="article-shell">
     <header class="article-header">
-      <a class="article-topic" href={`/topic/${topic}/`}>{topicName(topic)}</a>
+      <a class="article-topic" href={`/topic/${topic}/`}>{topicName(topics, topic)}</a>
       <h1>{title}</h1>
       <p class="article-deck">{description}</p>
       <div class="article-byline">
@@ -28,11 +33,11 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month:
       </div>
     </header>
     {cover && <figure class="article-cover"><img src={cover} alt="" /></figure>}
-    <div class="article-layout">
-      {headings.length > 1 && (
+    <div class:list={['article-layout', { 'without-toc': !hasToc }]}>
+      {hasToc && (
         <aside class="article-toc">
           <strong>本文目录</strong>
-          {headings.filter((heading) => heading.depth <= 3).map((heading) => (
+          {tocHeadings.map((heading) => (
             <a href={`#${heading.slug}`}>{heading.text}</a>
           ))}
         </aside>
@@ -40,9 +45,30 @@ const formattedDate = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month:
       <div class="article-content"><Content /></div>
     </div>
     <footer class="article-end">
-      <span>完</span>
-      <p>以上仅为个人研究记录，不构成投资建议。投资有风险，决策需独立。</p>
-      <a href="/">返回全部文章</a>
+      <h2>文章结尾</h2>
+      <span class="article-end-accent" aria-hidden="true"></span>
+      <p>本文仅为个人研究记录，不构成任何投资建议。投资有风险，决策需独立。</p>
+      <button class="share-button" type="button" data-share-button>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"></path></svg>
+        <span data-share-label>分享文章</span>
+      </button>
     </footer>
   </article>
+  <script>
+    const button = document.querySelector('[data-share-button]');
+    const label = document.querySelector('[data-share-label]');
+    button?.addEventListener('click', async () => {
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, url: window.location.href });
+        } else {
+          await navigator.clipboard.writeText(window.location.href);
+          if (label) label.textContent = '链接已复制';
+          setTimeout(() => { if (label) label.textContent = '分享文章'; }, 1800);
+        }
+      } catch (error) {
+        if (error instanceof Error && error.name !== 'AbortError' && label) label.textContent = '请复制浏览器地址分享';
+      }
+    });
+  </script>
 </BaseLayout>

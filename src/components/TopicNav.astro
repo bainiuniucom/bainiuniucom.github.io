@@ -1,8 +1,11 @@
 ---
-import { topics } from '../site';
+import { getCollection } from 'astro:content';
 
 interface Props { active?: string }
 const { active = 'all' } = Astro.props;
+const topics = (await getCollection('topics'))
+  .map((topic) => ({ slug: topic.id, ...topic.data }))
+  .sort((a, b) => a.order - b.order);
 ---
 
 <nav class="topic-nav" aria-label="文章专题">

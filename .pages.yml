@@ -12,6 +12,22 @@ content:
       - { name: name, label: 网站名称, type: string, required: true }
       - { name: tagline, label: 网站定位, type: string, required: true }
       - { name: description, label: 网站简介（用于搜索引擎）, type: text, required: true }
+  - name: topics
+    label: 专辑
+    type: collection
+    path: src/content/topics
+    format: json
+    filename: "{primary}.json"
+    view:
+      fields: [name, order]
+      primary: name
+      sort: [order, name]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - { name: name, label: 专辑名称, type: string, required: true }
+      - { name: order, label: 显示顺序, type: number, default: 100, required: true }
   - name: posts
     label: 文章
     type: collection
@@ -31,15 +47,12 @@ content:
       - { name: date, label: 发布日期, type: date, required: true }
       - name: topic
         label: 专题
-        type: select
+        type: reference
         required: true
         options:
-          values:
-            - { value: portfolio, label: 投资实盘 }
-            - { value: company, label: 公司研究 }
-            - { value: industry, label: 行业观察 }
-            - { value: method, label: 投资方法 }
-            - { value: reading, label: 读书笔记 }
+          collection: topics
+          value: "{id}"
+          label: "{name}"
       - { name: pinned, label: 首页置顶, type: boolean, default: false }
       - { name: cover, label: 封面图片, type: image }
       - { name: readTime, label: 预计阅读分钟, type: number, default: 6 }
