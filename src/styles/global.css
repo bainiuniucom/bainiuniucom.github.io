@@ -96,10 +96,9 @@ button, input { font: inherit; }
 .article-content th, .article-content td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
 .article-content th { color: var(--rose); background: #fff2ef; }
 .article-content ul, .article-content ol { padding-left: 1.4em; }
-.article-end { max-width: 680px; margin: 70px auto 0; padding: 26px; border: 1px solid var(--line); background: var(--surface); border-radius: 18px; }
-.article-disclaimer { margin: 0; color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.8; }
-.share-button { width: 100%; height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 999px; cursor: pointer; }
-.article-disclaimer + .share-button { margin-top: 16px; }
+.article-disclaimer { max-width: 680px; margin: 52px auto 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.8; }
+.article-actions { max-width: 680px; margin: 22px auto 0; }
+.share-button { width: 220px; height: 42px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 999px; cursor: pointer; }
 .share-button:hover { color: var(--rose); border-color: #efc5cb; }
 .share-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 .share-tip { margin: 12px 0 0 !important; color: var(--rose) !important; text-align: center; }
