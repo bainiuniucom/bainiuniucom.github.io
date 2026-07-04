@@ -2,7 +2,7 @@
 title: 腾讯回到低估区间后，我为什么选择继续持有
 description: 价格下跌不等于价值消失。重新检查业务、现金流与估值后，我记录下这次不卖出的理由。
 date: 2026-06-28
-topic: portfolio
+topic: [portfolio]
 pinned: true
 cover: /images/investing-desk.png
 readTime: 9

@@ -28,9 +28,9 @@ button, input { font: inherit; }
 .search-trigger svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; }
 
 .page-shell { max-width: 1240px; margin: 0 auto; padding: 0 28px 88px; }
-.profile-hero { overflow: hidden; position: relative; background: #f77b76; border-radius: 30px; aspect-ratio: 1725 / 547; }
+.profile-hero { overflow: hidden; position: relative; background: #f77b76; border-radius: 30px; aspect-ratio: 1497 / 580; isolation: isolate; }
 .profile-hero picture, .profile-hero img { width: 100%; height: 100%; display: block; }
-.profile-hero img { object-fit: cover; }
+.profile-hero img { object-fit: cover; border-radius: inherit; }
 .profile-copy { position: absolute; z-index: 2; left: 5%; top: 50%; width: 44%; color: #fff; transform: translateY(-50%); }
 .profile-copy p { margin: 0 0 18px; font-size: 13px; letter-spacing: .18em; }
 .profile-copy h1 { margin: 0 0 24px; font-family: var(--serif); font-size: clamp(42px, 5.5vw, 74px); font-weight: 650; letter-spacing: .08em; line-height: 1; }
@@ -69,7 +69,8 @@ button, input { font: inherit; }
 
 .article-shell { max-width: 1120px; margin: 40px auto 100px; padding: 0 28px; }
 .article-header { max-width: 840px; margin: 0 auto 44px; text-align: center; }
-.article-topic { display: inline-block; margin-bottom: 24px; padding: 8px 14px; color: var(--rose); background: var(--rose-soft); border-radius: 999px; font-size: 12px; }
+.article-topics { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px; margin-bottom: 24px; }
+.article-topic { display: inline-block; padding: 8px 14px; color: var(--rose); background: var(--rose-soft); border-radius: 999px; font-size: 12px; }
 .article-header h1 { margin: 0; font-family: var(--serif); font-size: clamp(36px, 6vw, 62px); line-height: 1.23; letter-spacing: -.02em; }
 .article-deck { max-width: 680px; margin: 24px auto; color: var(--muted); font-family: var(--serif); font-size: 18px; line-height: 1.8; }
 .article-byline { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 16px; color: var(--muted); font-size: 12px; }
@@ -95,10 +96,9 @@ button, input { font: inherit; }
 .article-content th { color: var(--rose); background: #fff2ef; }
 .article-content ul, .article-content ol { padding-left: 1.4em; }
 .article-end { max-width: 680px; margin: 70px auto 0; padding: 26px; border: 1px solid var(--line); background: var(--surface); border-radius: 18px; }
-.article-end h2 { margin: 0; font-size: 16px; }
-.article-end-accent { display: block; width: 26px; height: 2px; margin: 14px 0; background: var(--rose); }
-.article-end p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.article-disclaimer { margin: 0; color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.8; }
 .share-button { width: 100%; height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); color: var(--ink); background: transparent; border-radius: 999px; cursor: pointer; }
+.article-disclaimer + .share-button { margin-top: 16px; }
 .share-button:hover { color: var(--rose); border-color: #efc5cb; }
 .share-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 .share-tip { margin: 12px 0 0 !important; color: var(--rose) !important; text-align: center; }
@@ -143,7 +143,7 @@ button, input { font: inherit; }
   .page-shell { padding: 0 14px 60px; }
   .mini-brand img { width: 39px; height: 39px; }
   .profile-hero { aspect-ratio: 2.25 / 1; border-radius: 22px; }
-  .profile-hero img { object-fit: cover; }
+  .profile-hero img { object-fit: cover; object-position: center; }
   .profile-copy { left: 6%; width: 48%; }
   .profile-copy p { margin-bottom: 8px; font-size: 7px; }
   .profile-copy h1 { margin-bottom: 10px; font-size: clamp(22px, 8vw, 32px); }

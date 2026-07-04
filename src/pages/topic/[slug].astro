@@ -15,7 +15,7 @@ const { slug } = Astro.params;
 const topics = (await getCollection('topics'))
   .map((topic) => ({ slug: topic.id, ...topic.data }))
   .sort((a, b) => a.order - b.order);
-const posts = (await getCollection('posts', ({ data }) => data.topic === slug)).sort(
+const posts = (await getCollection('posts', ({ data }) => data.topic.includes(slug ?? ''))).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 const title = topicName(topics, slug ?? '');

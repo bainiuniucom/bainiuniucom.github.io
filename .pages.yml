@@ -12,12 +12,28 @@ content:
       - { name: name, label: 网站名称, type: string, required: true }
       - { name: tagline, label: 网站定位, type: string, required: true }
       - { name: description, label: 网站简介（用于搜索引擎）, type: text, required: true }
+  - name: about
+    label: 关于页面
+    type: file
+    path: src/content/pages/about.md
+    format: yaml-frontmatter
+    fields:
+      - { name: title, label: 页面标题, type: string, required: true }
+      - { name: intro, label: 开头介绍, type: text, required: true }
+      - name: body
+        label: 页面正文
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          switcher: true
   - name: topics
     label: 专辑
     type: collection
     path: src/content/topics
     format: json
-    filename: "{primary}.json"
+    filename: "{year}{month}{day}{hour}{minute}{second}.json"
+    subfolders: false
     view:
       fields: [name, order]
       primary: name
@@ -46,13 +62,16 @@ content:
       - { name: description, label: 摘要, type: text, required: true }
       - { name: date, label: 发布日期, type: date, required: true }
       - name: topic
-        label: 专题
+        label: 专辑（最多选择 5 个）
         type: reference
         required: true
         options:
           collection: topics
-          value: "{id}"
+          value: "{name}"
           label: "{name}"
+          multiple: true
+          min: 1
+          max: 5
       - { name: pinned, label: 首页置顶, type: boolean, default: false }
       - { name: cover, label: 封面图片, type: image }
       - { name: readTime, label: 预计阅读分钟, type: number, default: 6 }
