@@ -19,7 +19,6 @@ content:
     format: yaml-frontmatter
     fields:
       - { name: title, label: 页面标题, type: string, required: true }
-      - { name: intro, label: 开头介绍, type: text, required: true }
       - name: body
         label: 页面正文
         type: rich-text
@@ -68,7 +67,7 @@ content:
         options:
           collection: topics
           value: "{name}"
-          label: "{name}"
+          label: "{fields.name}"
           multiple: true
           min: 1
           max: 5

@@ -2,7 +2,7 @@
 title: 重读《聪明的投资者》：安全边际不是便宜这么简单
 description: 安全边际既是价格折扣，也是对自己可能犯错的承认。
 date: 2026-06-02
-topic: [reading]
+topic: [reading.json]
 pinned: false
 readTime: 6
 ---

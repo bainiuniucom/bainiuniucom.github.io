@@ -2,7 +2,7 @@
 title: 复利真正困难的部分，不是计算公式
 description: 大多数人理解复利，却很少有人能长期获得复利。真正的障碍通常来自行为、风险和时间。
 date: 2026-06-17
-topic: [method]
+topic: [method.json]
 pinned: false
 cover: /images/compounding-growth.png
 readTime: 7
