@@ -8,7 +8,10 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
-    topic: z.string(),
+    topic: z.preprocess(
+      (value) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : value),
+      z.array(z.string()).min(1).max(5),
+    ),
     pinned: z.boolean().default(false),
     cover: z.string().optional(),
     readTime: z.number().default(6),
@@ -23,4 +26,12 @@ const topics = defineCollection({
   }),
 });
 
-export const collections = { posts, topics };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string(),
+    intro: z.string(),
+  }),
+});
+
+export const collections = { posts, topics, pages };

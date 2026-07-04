@@ -2,7 +2,7 @@
 title: 五月投资复盘：没有交易，但完成了三次判断更新
 description: 不交易不代表没有工作。本月重新检查了仓位、风险暴露和三个核心假设。
 date: 2026-05-24
-topic: portfolio
+topic: [portfolio]
 pinned: false
 readTime: 5
 ---
