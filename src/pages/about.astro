@@ -7,11 +7,10 @@ if (!about) throw new Error('没有找到关于页面内容');
 const { Content } = await render(about);
 ---
 
-<BaseLayout title={about.data.title} description={about.data.intro}>
+<BaseLayout title={about.data.title}>
   <article class="simple-page">
     <p class="eyebrow">ABOUT BAINIUNIU</p>
     <h1>{about.data.title}</h1>
-    <p class="lead">{about.data.intro}</p>
     <Content />
     <a class="back-link" href="/">← 返回首页</a>
   </article>

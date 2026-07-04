@@ -9,7 +9,10 @@ const posts = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     topic: z.preprocess(
-      (value) => (Array.isArray(value) ? value : typeof value === 'string' ? [value] : value),
+      (value) => {
+        const values = Array.isArray(value) ? value : typeof value === 'string' ? [value] : value;
+        return Array.isArray(values) ? values.map((item) => String(item).replace(/\.json$/, '')) : values;
+      },
       z.array(z.string()).min(1).max(5),
     ),
     pinned: z.boolean().default(false),
@@ -30,7 +33,6 @@ const pages = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
-    intro: z.string(),
   }),
 });
 
