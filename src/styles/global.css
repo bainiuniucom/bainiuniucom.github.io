@@ -88,6 +88,7 @@ button, input { font: inherit; }
 .article-content h2 { margin: 2.4em 0 .8em; font-size: 29px; }
 .article-content h3 { margin: 2em 0 .6em; font-size: 22px; }
 .article-content p { margin: 0 0 1.45em; }
+.article-content img { width: auto; max-width: 100%; height: auto; margin: 2em auto; border-radius: 14px; }
 .article-content blockquote { margin: 2em 0; padding: 20px 26px; color: #5f4b4f; background: var(--rose-soft); border-left: 3px solid var(--rose); }
 .article-content del, .article-content s { text-decoration: none; }
 .article-content blockquote p:last-child { margin-bottom: 0; }
